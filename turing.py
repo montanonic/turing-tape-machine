@@ -1,10 +1,10 @@
 # From section 3: Examples of computing machines.
 class Machine:
-    def __init__(self):
+    def __init__(self, m_config):
         # Keep track of where we are in the tape
         self.pos = 0
         self.tape = [None]
-        self.m_config = None
+        self.m_config = m_config
 
     def _final_pos(self):
         return len(self.tape) - 1
@@ -35,7 +35,7 @@ class Machine:
 
 # I'm not sure why Turing puts additional spaces between each element in this
 # machine. It should only need a single Right operation between prints.
-ex1 = Machine()
+ex1 = Machine(None)
 (ex1
     .print(0).right()
     .right()
@@ -48,7 +48,7 @@ print("ex1: ", ex1.tape)
 # instructions for how to traverse a one-dimensional array of states leads to...
 # difficult code. Turing is a hero.
 ##
-ex2 = Machine()
+ex2 = Machine('b')
 # The Behavior for this Turing machine
 def ex2_b_op():
     '''
@@ -99,8 +99,6 @@ ex2_ops = {
     'p': ex2_p_op,
     'f': ex2_f_op,
     }
-# initial m-config
-ex2.m_config = 'b'
 
 # iterate 10 times
 for _ in range(0, 10):
